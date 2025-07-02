@@ -17,31 +17,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            BinarySenseTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                setContent {
+                    BinarySenseTheme {
+                        MainScreen()
+
+                    }
                 }
             }
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BinarySenseTheme {
-        Greeting("Android")
-    }
-}
+        @Preview(showBackground = true)
+        @Composable
+        fun GreetingPreview() {
+            BinarySenseTheme {
+                MainScreen()
+            }
+        }
