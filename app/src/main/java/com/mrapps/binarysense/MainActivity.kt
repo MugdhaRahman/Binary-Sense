@@ -20,7 +20,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BinarySenseTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     AppNavigation()
                 }
@@ -33,13 +32,12 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    // Setup the NavHost with the navigation controller
     NavHost(navController = navController, startDestination = "main_screen") {
         composable("main_screen") {
             MainScreen(navController = navController)
         }
         composable("metal_detector_screen") {
-            MetalDetectorScreen()
+            MetalDetectorScreen(navController = navController)
         }
     }
 }
