@@ -1,4 +1,4 @@
-package com.mrapps.binarysense
+package com.mrapps.binarysense.ui.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -21,16 +21,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mrapps.binarysense.ui.theme.colorPrimaryDark
-import com.mrapps.binarysense.ui.theme.textColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
 
     Scaffold(
         topBar = {
@@ -68,7 +69,7 @@ fun MainScreen() {
         ) {
 
             Card(
-                onClick = { /* handle click */ },
+                onClick = { navController.navigate("metal_detector_screen") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
@@ -86,8 +87,6 @@ fun MainScreen() {
                 ) {
                     Text(
                         "Metal Detector",
-
-                        color = textColor,
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold
@@ -114,9 +113,34 @@ fun MainScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        "Barometer",
+                        "Bttery",
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold
 
-                        color = textColor,
+                    )
+                }
+            }
+
+            Card(
+                onClick = { /* handle click */ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.cardElevation(6.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.background
+                ),
+                border = BorderStroke(1.dp, color = colorPrimaryDark)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "Barometer",
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold
@@ -134,6 +158,5 @@ fun MainScreen() {
 @Preview
 @Composable
 fun PreviewHomeScreen() {
-    MainScreen()
-
+    MainScreen(navController = NavController(LocalContext.current))
 }
